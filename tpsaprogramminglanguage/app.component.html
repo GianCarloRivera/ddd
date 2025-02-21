@@ -1,0 +1,12 @@
+<div class="App">
+  <app-header></app-header>
+  <main>
+    <app-menu (addToCartEvent)="addToCart($event)"></app-menu>
+    <app-cart 
+      [cart]="cart" 
+      (removeFromCartEvent)="removeFromCart($event)"
+      (checkoutEvent)="checkout()"
+    ></app-cart>
+  </main>
+  <app-footer></app-footer>
+</div> 

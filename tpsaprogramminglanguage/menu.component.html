@@ -1,0 +1,14 @@
+<section class="menu">
+  <h2>Our Menu</h2>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="error">{{error}}</div>
+  <div *ngIf="!loading && !error" class="burger-grid">
+    <div *ngFor="let burger of burgers" class="burger-card">
+      <img [src]="burger.image" [alt]="burger.name">
+      <h3>{{burger.name}}</h3>
+      <p>{{burger.description}}</p>
+      <p class="price">${{burger.price.toFixed(2)}}</p>
+      <button (click)="addToCart(burger)">Add to Cart</button>
+    </div>
+  </div>
+</section> 

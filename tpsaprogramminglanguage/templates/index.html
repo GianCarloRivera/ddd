@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasty Burgers</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div id="root"></div>
+    {% if use_react %}
+        <script src="{% static 'js/react/main.js' %}"></script>
+    {% elif use_angular %}
+        <script src="{% static 'js/angular/main.js' %}"></script>
+    {% else %}
+        <header>
+            <h1>🍔 Tasty Burgers</h1>
+            <p>The best burgers in town!</p>
+        </header>
+
+        <main>
+            <section class="menu">
+                <h2>Our Menu</h2>
+                <div class="burger-grid">
+                    {% for burger in burgers %}
+                    <div class="burger-card">
+                        <img src="{{ burger.image }}" alt="{{ burger.name }}">
+                        <h3>{{ burger.name }}</h3>
+                        <p>{{ burger.description }}</p>
+                        <p class="price">${{ burger.price }}</p>
+                        <button onclick="addToCart({{ burger.id }})">Add to Cart</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="cart">
+                <h2>Your Cart</h2>
+                <div id="cart-items"></div>
+                <div id="cart-total">Total: $0.00</div>
+                <button onclick="checkout()" class="checkout-btn">Checkout</button>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 Tasty Burgers. All rights reserved.</p>
+        </footer>
+
+        <script src="{% static 'js/script.js' %}"></script>
+    {% endif %}
+</body>
+</html> 
